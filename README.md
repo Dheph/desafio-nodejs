@@ -22,9 +22,17 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
+
+
+
+
 ## Description
 
+Desafio nodejs, mini api de autenticação e listagem de usuários, utilizando:
+
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+
+com typescript, principios SOLID aplicados. 
 
 ## Installation
 
@@ -45,18 +53,79 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Test
+# Api routes
 
-```bash
-# unit tests
-$ npm run test
+###  **Signup** :
+ http://localhost:3000/signup 
 
-# e2e tests
-$ npm run test:e2e
+> Request 
 
-# test coverage
-$ npm run test:cov
-```
+     {
+     "name": "joao",
+     "email": "maria@tx.com",
+     "password": "12345",
+     "telephones": [
+       {
+         "number": 9131234330,
+         "area_code": 11
+       }
+     ]
+    }
+
+> Response
+
+     {
+    	"id": "61b88d5bdad1bc50c450cc47",
+    	"created_at": "2021-12-14T12:25:38.229Z",
+    	"modified_at": "2021-12-14T12:25:38.229Z"
+    }
+
+###  **Signin** :
+http://localhost:3000/authentication/user/login
+
+> Request 
+
+    {
+     "email": "maria@mail.com",
+     "password": "@maria123"
+    }
+
+> Response
+
+    {
+    	"id": "61b88d5bdad1bc50c450cc47",
+    	"name": "maria",
+    	"email": "maria@mailcom",
+    	"token": "eyJhbGciOiJIUzI1NiI..."
+    }
+
+###  **User info** :
+http://localhost:3000/user
+
+> Headers
+
+    Authorization : {
+    	Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVC....
+    }
+
+> Response
+
+    {
+    	"id": "61b88d5bdad1bc50c450cc47",
+    	"email": "maria@mail.com",
+    	"telephones": [
+    		{
+    			"_id": "61b88d5bdad1bc50c450cc4a",
+    			"user_id": "61b88d5bdad1bc50c450cc47",
+    			"area_code": 11,
+    			"number": 9131234330,
+    			"__v": 0
+    		}
+    	],
+    	"created_at": "2021-12-14T12:25:38.229Z",
+    	"modified_at": "2021-12-14T12:25:38.229Z"
+    }
+
 
 ## Support
 
