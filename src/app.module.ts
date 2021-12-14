@@ -12,9 +12,6 @@ import { AuthenticationModule } from './modules/authentication/authentication.mo
   imports: [
     ConfigModule.forRoot(),
     MongooseModule.forRoot(mongoConstantsConnection.mongo_url),
-    //MongooseModule.forRoot(
-    //  'mongodb+srv://dhepherson:p2d2t3b9@cluster0.lcuym.mongodb.net/test',
-    //),
     UsersModule,
     AuthenticationModule,
     TelephonesModule,
