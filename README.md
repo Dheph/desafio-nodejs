@@ -56,7 +56,7 @@ $ npm run start:prod
 # Api routes
 
 ###  **Signup** :
- http://localhost:3000/signup 
+ https://desafio-nodej.herokuapp.com/signup 
 
 > Request 
 
@@ -81,7 +81,7 @@ $ npm run start:prod
     }
 
 ###  **Signin** :
-http://localhost:3000/authentication/user/login
+https://desafio-nodej.herokuapp.com/authentication/user/login
 
 > Request 
 
@@ -100,7 +100,7 @@ http://localhost:3000/authentication/user/login
     }
 
 ###  **User info** :
-http://localhost:3000/user
+https://desafio-nodej.herokuapp.com/user
 
 > Headers
 
