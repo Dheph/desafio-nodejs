@@ -25,49 +25,45 @@ export class UsersService {
   ) {}
 
   async create(createUserDto: CreateUserDto) {
-    try {
-      const { name, email, password, telephones } = createUserDto;
-      const checkEmailExist = await this.userModel.findOne({
-        email,
-      });
+    const { name, email, password, telephones } = createUserDto;
+    const checkEmailExist = await this.userModel.findOne({
+      email,
+    });
 
-      if (checkEmailExist) {
-        throw new BadRequestException('Email Existente');
-      }
-
-      telephones.map(async (telephone) => {
-        await this.telephoneService.checkTelephoneIsAvaible(telephone.number);
-      });
-
-      const hashPass = hashPasswordTransform.to(password);
-
-      const user = new this.userModel({
-        name,
-        email,
-        password: hashPass,
-      });
-
-      const userSaved = await user.save();
-
-      telephones.map(async (telephone) => {
-        await this.telephoneService.create({
-          user_id: userSaved.id,
-          number: telephone.number,
-          area_code: telephone.area_code,
-        });
-      });
-
-      const userData = await this.findOne({ id: userSaved.id });
-
-      const data = {
-        id: userData.id,
-        created_at: userData.created_at,
-        modified_at: userData.modified_at,
-      };
-      return data;
-    } catch (err) {
-      throw new BadRequestException('Ocorreu uma falha na criação do usuário');
+    if (checkEmailExist) {
+      throw new BadRequestException('Email Existente');
     }
+
+    telephones.map(async (telephone) => {
+      await this.telephoneService.checkTelephoneIsAvaible(telephone.number);
+    });
+
+    const hashPass = hashPasswordTransform.to(password);
+
+    const user = new this.userModel({
+      name,
+      email,
+      password: hashPass,
+    });
+
+    const userSaved = await user.save();
+
+    telephones.map(async (telephone) => {
+      await this.telephoneService.create({
+        user_id: userSaved.id,
+        number: telephone.number,
+        area_code: telephone.area_code,
+      });
+    });
+
+    const userData = await this.findOne({ id: userSaved.id });
+
+    const data = {
+      id: userData.id,
+      created_at: userData.created_at,
+      modified_at: userData.modified_at,
+    };
+    return data;
   }
 
   async findOneByEmail(email: string) {
