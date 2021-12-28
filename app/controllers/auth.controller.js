@@ -64,11 +64,17 @@ exports.signup = async (req, res) => {
           });
 
           await telephone.save();
+
+          res
+            .status(200)
+            .json({
+              id: doc._id,
+              created_at: doc.created_at,
+              modified_at: doc.modified_at,
+            });
         });
       }
     });
-
-    res.status(200).json({ message: 'Usuário criado com sucesso!' });
   });
 };
 
