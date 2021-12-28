@@ -38,7 +38,7 @@ $ yarn start
 ###  **Status Route** :
 GET https://desafio-nodej.herokuapp.com/status
 
-> Response { ok }
+> Response { server on }
 
 
 ###  **Signup** :
