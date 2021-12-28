@@ -12,8 +12,8 @@ const User = mongoose.model(
         ref: 'Telephone',
       },
     ],
-    created_at: Date,
-    modified_at: Date,
+    created_at: { type: String, required: true, default: Date.now() },
+    modified_at: { type: String, required: true, default: Date.now() },
   }),
 );
 
