@@ -5,6 +5,7 @@ const Telephone = mongoose.model(
   mongoose.Schema({
     number: Number,
     area_code: Number,
+    user_id: String,
   }),
 );
 

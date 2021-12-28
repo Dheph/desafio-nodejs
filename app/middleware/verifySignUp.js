@@ -7,7 +7,7 @@ checkDuplicateEmail = (req, res, next) => {
     email: req.body.email,
   }).exec((err, user) => {
     if (err) {
-      res.status(500).send({
+      res.status(500).json({
         message:
           'Ocorreu um erro durante a verificação do usuário, por favor tente novamente!',
       });
@@ -16,7 +16,7 @@ checkDuplicateEmail = (req, res, next) => {
     if (user) {
       res
         .status(400)
-        .send({ message: 'Erro!, O email informado já está em uso' });
+        .json({ message: 'Erro!, O email informado já está em uso' });
       return;
     }
     next();
@@ -32,7 +32,7 @@ checkTelephonesExisted = (req, res, next) => {
         number: telephones[i].number,
       }).exec((err, telephone) => {
         if (err) {
-          res.status(500).send({
+          res.status(500).json({
             message:
               'Ocorreu um erro durante a validação do(s) telefones, por favor tente novamente!',
           });
@@ -41,7 +41,7 @@ checkTelephonesExisted = (req, res, next) => {
         if (telephone) {
           res
             .status(400)
-            .send(`Erro!, O telefone: ${telephones[i].number}, já está em uso`);
+            .json(`Erro!, O telefone: ${telephones[i].number}, já está em uso`);
         }
       });
     }

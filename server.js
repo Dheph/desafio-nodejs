@@ -7,6 +7,8 @@ dotenv.config();
 
 const app = express();
 
+const PORT = process.env.PORT || 8080;
+
 const corsOptions = {
   origin: '*',
 };
@@ -19,12 +21,14 @@ app.get('/status', (req, res) => {
   res.send('server on');
 });
 
-const PORT = process.env.PORT || 8080;
+require('./app/routes/auth.router')(app);
+require('./app/routes/user.router')(app);
+
 app.listen(PORT, () => {
   console.log(`server is running on port ${PORT}`);
 });
 
-console.log('db connection started...')
+console.log('db connection started...');
 db.mongoose
   .connect(dbConfig.DB_URL, {
     useNewUrlParser: true,

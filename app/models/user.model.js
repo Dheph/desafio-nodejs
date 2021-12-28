@@ -6,14 +6,8 @@ const User = mongoose.model(
     name: String,
     email: String,
     password: String,
-    telephones: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Telephone',
-      },
-    ],
-    created_at: { type: String, required: true, default: Date.now() },
-    modified_at: { type: String, required: true, default: Date.now() },
+    created_at: { type: Date, required: true, default: Date.now() },
+    modified_at: { type: Date, required: true, default: Date.now() },
   }),
 );
 
